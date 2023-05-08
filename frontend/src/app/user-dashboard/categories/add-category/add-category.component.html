@@ -1,0 +1,17 @@
+<div class="panel">
+    <h5 class="text-lg font-semibold">Add Category</h5>
+    <div class="mt-5">
+        <form (ngSubmit)="registerCategory()" [formGroup]="registerForm">
+            <!-- [ngClass]="(registerSupplierForm.controls.name.invalid && registerSupplierForm.controls.name.touched) ? 'has-error' : ''" -->
+            <div [ngClass]="(registerForm.controls.name.invalid && registerForm.controls.name.touched) ? 'has-error' : ''"
+                 class="mb-4">
+                <label class="form-label font-normal" for="name">Category Name</label>
+                <input class="form-input font-normal" formControlName="name" id="name" type="text">
+            </div>
+            <div class="mb-2">
+                <button [disabled]="registerForm.invalid" class="btn btn-primary w-1/5" type="submit">Register Category
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

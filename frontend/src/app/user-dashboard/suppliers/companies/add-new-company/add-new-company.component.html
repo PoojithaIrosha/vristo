@@ -1,0 +1,32 @@
+<div class="panel">
+    <h5 class="text-lg font-semibold">Add Company</h5>
+    <div class="mt-5">
+        <form (ngSubmit)="registerCompany()" [formGroup]="registerCompanyForm">
+            <div [ngClass]="(registerCompanyForm.controls.name.invalid && registerCompanyForm.controls.name.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="name">Company Name</label>
+                <input class="form-input font-normal" formControlName="name" id="name" type="text">
+            </div>
+            <div [ngClass]="(registerCompanyForm.controls.mobile.invalid && registerCompanyForm.controls.mobile.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="mobile">Company Mobile Number</label>
+                <input class="form-input font-normal" formControlName="mobile" id="mobile" type="text">
+            </div>
+            <div [ngClass]="(registerCompanyForm.controls.email.invalid && registerCompanyForm.controls.email.touched) ? 'has-error' : ''"
+                 class="mb-4">
+                <label class="form-label font-normal" for="email">Company Email Address</label>
+                <input class="form-input font-normal" formControlName="email" id="email" type="text">
+            </div>
+            <div [ngClass]="(registerCompanyForm.controls.address.invalid && registerCompanyForm.controls.address.touched) ? 'has-error' : ''"
+                 class="mb-4">
+                <label class="form-label font-normal" for="address">Company Address</label>
+                <input class="form-input font-normal" formControlName="address" id="address" type="text">
+            </div>
+            <div class="mb-2">
+                <button [disabled]="registerCompanyForm.invalid" class="btn btn-primary w-1/5" type="submit">Register
+                    Company
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

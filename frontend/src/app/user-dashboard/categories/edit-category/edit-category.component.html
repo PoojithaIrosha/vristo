@@ -1,0 +1,23 @@
+<div class="panel">
+    <h5 class="text-lg font-semibold">Update Category</h5>
+    <div class="mt-5">
+        <form (ngSubmit)="updateCategory()" [formGroup]="editCategoryForm">
+            <!-- [ngClass]="(registerSupplierForm.controls.name.invalid && registerSupplierForm.controls.name.touched) ? 'has-error' : ''" -->
+            <div [ngClass]="(editCategoryForm.controls.id.invalid && editCategoryForm.controls.id.touched) ? 'has-error' : ''"
+                 class="mb-4">
+                <label class="form-label font-normal" for="id">Category ID</label>
+                <input class="form-input font-normal disabled:bg-[#eee]" formControlName="id" id="id" type="text">
+            </div>
+            <div [ngClass]="(editCategoryForm.controls.name.invalid && editCategoryForm.controls.name.touched) ? 'has-error' : ''"
+                 class="mb-4">
+                <label class="form-label font-normal" for="name">Category Name</label>
+                <input class="form-input font-normal" formControlName="name" id="name" type="text">
+            </div>
+            <div class="mb-2">
+                <button [disabled]="editCategoryForm.invalid" class="btn btn-primary w-1/5" type="submit">Update
+                    Category
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

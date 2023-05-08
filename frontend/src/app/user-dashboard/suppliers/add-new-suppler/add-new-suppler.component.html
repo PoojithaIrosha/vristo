@@ -1,0 +1,35 @@
+<div class="panel">
+    <h5 class="text-lg font-semibold">Add Supplier</h5>
+    <div class="mt-5">
+        <form (ngSubmit)="registerSupplier()" [formGroup]="registerSupplierForm">
+            <div [ngClass]="(registerSupplierForm.controls.name.invalid && registerSupplierForm.controls.name.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="name">Supplier Name</label>
+                <input class="form-input font-normal" formControlName="name" id="name" type="text">
+            </div>
+            <div [ngClass]="(registerSupplierForm.controls.mobile.invalid && registerSupplierForm.controls.mobile.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="mobile">Mobile Number</label>
+                <input class="form-input font-normal" formControlName="mobile" id="mobile" type="text">
+            </div>
+            <div [ngClass]="(registerSupplierForm.controls.email.invalid && registerSupplierForm.controls.email.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="email">Email Address</label>
+                <input class="form-input font-normal" formControlName="email" id="email" type="text">
+            </div>
+            <div [ngClass]="(registerSupplierForm.controls.email.invalid && registerSupplierForm.controls.email.touched) ? 'has-error' : ''"
+                 class="mb-4">
+                <label class="form-label" for="company">Company</label>
+                <select class="form-select" formControlName="company" id="company">
+                    <option value="">Select Company</option>
+                    <option *ngFor="let company of companies$ | async" [value]="company.id">{{company.name}}</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                <button [disabled]="registerSupplierForm.invalid" class="btn btn-primary w-1/5" type="submit">Register
+                    User
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

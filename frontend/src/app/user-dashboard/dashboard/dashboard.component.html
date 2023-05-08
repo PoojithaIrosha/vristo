@@ -1,0 +1,389 @@
+<div class="mb-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+    <!-- Daily sales start -->
+    <div class="panel h-full sm:col-span-2 xl:col-span-1">
+        <div class="mb-5 flex items-center">
+            <h5 class="text-lg font-semibold dark:text-white-light">
+                Daily Sales <span class="block text-sm font-normal text-white-dark">Go to columns for details.</span>
+            </h5>
+            <div class="relative ml-auto mr-auto">
+                <div
+                        class="grid h-11 w-11 place-content-center rounded-full bg-[#ffeccb] text-warning dark:bg-warning dark:text-[#ffeccb]"
+                >
+                    <svg fill="none" height="40" viewBox="0 0 24 24" width="40" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 6V18" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/>
+                        <path
+                                d="M15 9.5C15 8.11929 13.6569 7 12 7C10.3431 7 9 8.11929 9 9.5C9 10.8807 10.3431 12 12 12C13.6569 12 15 13.1193 15 14.5C15 15.8807 13.6569 17 12 17C10.3431 17 9 15.8807 9 14.5"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-width="1.5"
+                        />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="rounded-lg bg-white dark:bg-black" x-ref="dailySales">
+                <div class="grid min-h-[175px] place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
+                    <!-- loader -->
+                    <!-- <span class="inline-flex h-5 w-5 animate-spin rounded-full border-2 border-black !border-l-transparent dark:border-white"></span> -->
+                    <!-- TODO: daily sales chart -->
+                    <canvas id="dailySalesChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Daily sales end -->
+    
+    <!-- Income, Expenses & Profit start -->
+    <div class="panel h-full">
+        <div class="mb-5 flex items-center dark:text-white-light">
+            <h5 class="text-lg font-semibold">Summary</h5>
+            <div class="dropdown ml-auto mr-auto" x-data="dropdown">
+                <a href="javascript:;">
+                    <svg
+                            class="h-5 w-5 text-black/70 hover:!text-primary dark:text-white/70"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <circle cx="5" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="12" cy="12" opacity="0.5" r="2" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="19" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </a>
+                <ul class="right-0 left-0" x-cloak x-show="open" x-transition x-transition.duration.300ms>
+                    <li><a href="javascript:;">View Report</a></li>
+                    <li><a href="javascript:;">Edit Report</a></li>
+                    <li><a href="javascript:;">Mark as Done</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="space-y-9">
+            <div class="flex items-center">
+                <div class="h-9 w-9 mr-3 ml-3">
+                    <div
+                            class="grid h-9 w-9 place-content-center rounded-full bg-secondary-light text-secondary dark:bg-secondary dark:text-secondary-light"
+                    >
+                        <svg fill="none" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                    d="M3.74157 18.5545C4.94119 20 7.17389 20 11.6393 20H12.3605C16.8259 20 19.0586 20 20.2582 18.5545M3.74157 18.5545C2.54194 17.1091 2.9534 14.9146 3.77633 10.5257C4.36155 7.40452 4.65416 5.84393 5.76506 4.92196M3.74157 18.5545C3.74156 18.5545 3.74157 18.5545 3.74157 18.5545ZM20.2582 18.5545C21.4578 17.1091 21.0464 14.9146 20.2235 10.5257C19.6382 7.40452 19.3456 5.84393 18.2347 4.92196M20.2582 18.5545C20.2582 18.5545 20.2582 18.5545 20.2582 18.5545ZM18.2347 4.92196C17.1238 4 15.5361 4 12.3605 4H11.6393C8.46374 4 6.87596 4 5.76506 4.92196M18.2347 4.92196C18.2347 4.92196 18.2347 4.92196 18.2347 4.92196ZM5.76506 4.92196C5.76506 4.92196 5.76506 4.92196 5.76506 4.92196Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                            />
+                            <path
+                                    d="M9.1709 8C9.58273 9.16519 10.694 10 12.0002 10C13.3064 10 14.4177 9.16519 14.8295 8"
+                                    opacity="0.5"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-width="1.5"
+                            />
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="mb-2 flex font-semibold text-white-dark">
+                        <h6>Income</h6>
+                        <p class="ml-auto mr-auto">$92,600</p>
+                    </div>
+                    <div class="h-2 rounded-full bg-dark-light shadow dark:bg-[#1b2e4b]">
+                        <div class="h-full w-11/12 rounded-full bg-gradient-to-r from-[#7579ff] to-[#b224ef]"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="h-9 w-9 mr-3 ml-3">
+                    <div
+                            class="grid h-9 w-9 place-content-center rounded-full bg-success-light text-success dark:bg-success dark:text-success-light"
+                    >
+                        <svg fill="none" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                    d="M4.72848 16.1369C3.18295 14.5914 2.41018 13.8186 2.12264 12.816C1.83509 11.8134 2.08083 10.7485 2.57231 8.61875L2.85574 7.39057C3.26922 5.59881 3.47597 4.70292 4.08944 4.08944C4.70292 3.47597 5.59881 3.26922 7.39057 2.85574L8.61875 2.57231C10.7485 2.08083 11.8134 1.83509 12.816 2.12264C13.8186 2.41018 14.5914 3.18295 16.1369 4.72848L17.9665 6.55812C20.6555 9.24711 22 10.5916 22 12.2623C22 13.933 20.6555 15.2775 17.9665 17.9665C15.2775 20.6555 13.933 22 12.2623 22C10.5916 22 9.24711 20.6555 6.55812 17.9665L4.72848 16.1369Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                            />
+                            <circle
+                                    cx="8.60699"
+                                    cy="8.87891"
+                                    opacity="0.5"
+                                    r="2"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    transform="rotate(-45 8.60699 8.87891)"
+                            />
+                            <path
+                                    d="M11.5417 18.5L18.5208 11.5208"
+                                    opacity="0.5"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-width="1.5"
+                            />
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="mb-2 flex font-semibold text-white-dark">
+                        <h6>Profit</h6>
+                        <p class="ml-auto mr-auto">$37,515</p>
+                    </div>
+                    <div class="h-2 w-full rounded-full bg-dark-light shadow dark:bg-[#1b2e4b]">
+                        <div
+                                class="h-full w-full rounded-full bg-gradient-to-r from-[#3cba92] to-[#0ba360]"
+                                style="width: 65%"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="h-9 w-9 mr-3 ml-3">
+                    <div
+                            class="grid h-9 w-9 place-content-center rounded-full bg-warning-light text-warning dark:bg-warning dark:text-warning-light"
+                    >
+                        <svg fill="none" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                    d="M2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12C22 15.7712 22 17.6569 20.8284 18.8284C19.6569 20 17.7712 20 14 20H10C6.22876 20 4.34315 20 3.17157 18.8284C2 17.6569 2 15.7712 2 12Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                            />
+                            <path d="M10 16H6" opacity="0.5" stroke="currentColor" stroke-linecap="round"
+                                  stroke-width="1.5"/>
+                            <path d="M14 16H12.5" opacity="0.5" stroke="currentColor" stroke-linecap="round"
+                                  stroke-width="1.5"/>
+                            <path d="M2 10L22 10" opacity="0.5" stroke="currentColor" stroke-linecap="round"
+                                  stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="mb-2 flex font-semibold text-white-dark">
+                        <h6>Expenses</h6>
+                        <p class="ml-auto mr-auto">$55,085</p>
+                    </div>
+                    <div class="h-2 w-full rounded-full bg-dark-light shadow dark:bg-[#1b2e4b]">
+                        <div
+                                class="h-full w-full rounded-full bg-gradient-to-r from-[#f09819] to-[#ff5858]"
+                                style="width: 80%"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Income, Expenses & Profit end -->
+    
+    <!-- Orders by category  start -->
+    <div class="panel h-full p-0">
+        <div class="absolute flex w-full items-center justify-between p-5">
+            <div class="relative">
+                <div
+                        class="flex h-11 w-11 items-center justify-center rounded-lg bg-success-light text-success dark:bg-success dark:text-success-light"
+                >
+                    <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                                d="M2 3L2.26491 3.0883C3.58495 3.52832 4.24497 3.74832 4.62248 4.2721C5 4.79587 5 5.49159 5 6.88304V9.5C5 12.3284 5 13.7426 5.87868 14.6213C6.75736 15.5 8.17157 15.5 11 15.5H19"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-width="1.5"
+                        />
+                        <path
+                                d="M7.5 18C8.32843 18 9 18.6716 9 19.5C9 20.3284 8.32843 21 7.5 21C6.67157 21 6 20.3284 6 19.5C6 18.6716 6.67157 18 7.5 18Z"
+                                opacity="0.5"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                        />
+                        <path
+                                d="M16.5 18.0001C17.3284 18.0001 18 18.6716 18 19.5001C18 20.3285 17.3284 21.0001 16.5 21.0001C15.6716 21.0001 15 20.3285 15 19.5001C15 18.6716 15.6716 18.0001 16.5 18.0001Z"
+                                opacity="0.5"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                        />
+                        <path d="M11 9H8" opacity="0.5" stroke="currentColor" stroke-linecap="round"
+                              stroke-width="1.5"/>
+                        <path
+                                d="M5 6H16.4504C18.5054 6 19.5328 6 19.9775 6.67426C20.4221 7.34853 20.0173 8.29294 19.2078 10.1818L18.7792 11.1818C18.4013 12.0636 18.2123 12.5045 17.8366 12.7523C17.4609 13 16.9812 13 16.0218 13H5"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                        />
+                    </svg>
+                </div>
+            </div>
+            <h5 class="text-2xl font-semibold text-right text-left dark:text-white-light">
+                3,192
+                <span class="block text-sm font-normal">Total Orders</span>
+            </h5>
+        </div>
+        <div class="rounded-lg bg-transparent" x-ref="totalOrders">
+            <!-- loader -->
+            <div class="grid min-h-[300px] place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
+                <!-- <span class="inline-flex h-5 w-5 animate-spin rounded-full border-2 border-black !border-l-transparent dark:border-white"></span> -->
+                <!-- TODO: orders by category chart -->
+                <canvas height="230" id="ordersByCategoryChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <!-- Orders by category  end -->
+</div>
+
+<div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <div class="panel h-full w-full">
+        <div class="mb-5 flex items-center justify-between">
+            <h5 class="text-lg font-semibold dark:text-white-light">Recent Orders</h5>
+        </div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                <tr>
+                    <th class="rounded-l-md rounded-r-md">Customer</th>
+                    <th>Product</th>
+                    <th>Invoice</th>
+                    <th>Price</th>
+                    <th class="rounded-r-md rounded-l-md">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="group text-white-dark hover:text-black dark:hover:text-white-light/90">
+                    <td class="min-w-[150px] text-black dark:text-white">
+                        <div class="flex items-center">
+                            <img
+                                    alt="avatar"
+                                    class="h-8 w-8 rounded-md object-cover mr-3 ml-3"
+                                    src="assets/images/profile-6.jpeg"
+                            />
+                            <span class="whitespace-nowrap">Luke Ivory</span>
+                        </div>
+                    </td>
+                    <td class="text-primary">Headphone</td>
+                    <td><a href="apps-invoice-preview.html">#46894</a></td>
+                    <td>$56.07</td>
+                    <td><span class="badge bg-success shadow-md dark:group-hover:bg-transparent">Paid</span></td>
+                </tr>
+                <tr class="group text-white-dark hover:text-black dark:hover:text-white-light/90">
+                    <td class="text-black dark:text-white">
+                        <div class="flex items-center">
+                            <img
+                                    alt="avatar"
+                                    class="h-8 w-8 rounded-md object-cover mr-3 ml-3"
+                                    src="assets/images/profile-7.jpeg"
+                            />
+                            <span class="whitespace-nowrap">Andy King</span>
+                        </div>
+                    </td>
+                    <td class="text-info">Nike Sport</td>
+                    <td><a href="apps-invoice-preview.html">#76894</a></td>
+                    <td>$126.04</td>
+                    <td><span class="badge bg-secondary shadow-md dark:group-hover:bg-transparent">Shipped</span></td>
+                </tr>
+                <tr class="group text-white-dark hover:text-black dark:hover:text-white-light/90">
+                    <td class="text-black dark:text-white">
+                        <div class="flex items-center">
+                            <img
+                                    alt="avatar"
+                                    class="h-8 w-8 rounded-md object-cover mr-3 ml-3"
+                                    src="assets/images/profile-8.jpeg"
+                            />
+                            <span class="whitespace-nowrap">Laurie Fox</span>
+                        </div>
+                    </td>
+                    <td class="text-warning">Sunglasses</td>
+                    <td><a href="apps-invoice-preview.html">#66894</a></td>
+                    <td>$56.07</td>
+                    <td><span class="badge bg-success shadow-md dark:group-hover:bg-transparent">Paid</span></td>
+                </tr>
+                <tr class="group text-white-dark hover:text-black dark:hover:text-white-light/90">
+                    <td class="text-black dark:text-white">
+                        <div class="flex items-center">
+                            <img
+                                    alt="avatar"
+                                    class="h-8 w-8 rounded-md object-cover mr-3 ml-3"
+                                    src="assets/images/profile-9.jpeg"
+                            />
+                            <span class="whitespace-nowrap">Ryan Collins</span>
+                        </div>
+                    </td>
+                    <td class="text-danger">Sport</td>
+                    <td><a href="apps-invoice-preview.html">#75844</a></td>
+                    <td>$110.00</td>
+                    <td><span class="badge bg-secondary shadow-md dark:group-hover:bg-transparent">Shipped</span></td>
+                </tr>
+                <tr class="group text-white-dark hover:text-black dark:hover:text-white-light/90">
+                    <td class="text-black dark:text-white">
+                        <div class="flex items-center">
+                            <img
+                                    alt="avatar"
+                                    class="h-8 w-8 rounded-md object-cover mr-3 ml-3"
+                                    src="assets/images/profile-10.jpeg"
+                            />
+                            <span class="whitespace-nowrap">Irene Collins</span>
+                        </div>
+                    </td>
+                    <td class="text-secondary">Speakers</td>
+                    <td><a href="apps-invoice-preview.html">#46894</a></td>
+                    <td>$56.07</td>
+                    <td><span class="badge bg-success shadow-md dark:group-hover:bg-transparent">Paid</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="panel h-full w-full">
+        <div class="mb-5 flex items-center justify-between">
+            <h5 class="text-lg font-semibold dark:text-white-light">Top Selling Product</h5>
+        </div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                <tr class="border-b-0">
+                    <th class="rounded-l-md rounded-r-md">Product</th>
+                    <th>Brand</th>
+                    <th class="rounded-r-md rounded-l-md">Source</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let product of topSellingProducts"
+                    class="group text-white-dark hover:text-black dark:hover:text-white-light/90">
+                    <td class="min-w-[150px] text-black dark:text-white">
+                        <div class="flex">
+                            <img
+                                    alt="avatar"
+                                    class="h-8 w-8 rounded-md object-cover mr-3 ml-3"
+                                    src="assets/images/product-headphones.jpg"
+                            />
+                            
+                            <p class="whitespace-nowrap">{{product.name}}<span
+                                    class="block text-xs text-primary">{{product.brand.category.name}}</span></p>
+                        </div>
+                    </td>
+                    <td class="text-center">{{product.brand.name}}</td>
+                    <td>
+                        <a class="flex items-center text-danger" href="javascript:;">
+                            <svg
+                                    class="h-3.5 w-3.5 mr-1 ml-1 rotate-180"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                        d="M12.6644 5.47875L16.6367 9.00968C18.2053 10.404 18.9896 11.1012 18.9896 11.9993C18.9896 12.8975 18.2053 13.5946 16.6367 14.989L12.6644 18.5199C11.9484 19.1563 11.5903 19.4746 11.2952 19.342C11 19.2095 11 18.7305 11 17.7725V15.4279C7.4 15.4279 3.5 17.1422 2 19.9993C2 10.8565 7.33333 8.57075 11 8.57075V6.22616C11 5.26817 11 4.78917 11.2952 4.65662C11.5903 4.52407 11.9484 4.8423 12.6644 5.47875Z"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                />
+                                <path
+                                        d="M15.5386 4.5L20.7548 9.34362C21.5489 10.081 22.0001 11.1158 22.0001 12.1994C22.0001 13.3418 21.4989 14.4266 20.629 15.1671L15.5386 19.5"
+                                        opacity="0.5"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-width="1.5"
+                                />
+                            </svg>
+                            
+                            Direct
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

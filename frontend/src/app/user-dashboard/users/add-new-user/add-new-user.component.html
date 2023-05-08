@@ -1,0 +1,44 @@
+<div class="panel">
+    <h5 class="text-lg font-semibold">Add User</h5>
+    
+    <div class="mt-5">
+        <form (ngSubmit)="registerUser()" [formGroup]="regiserUserForm">
+            <div [ngClass]="(regiserUserForm.controls.name.invalid && regiserUserForm.controls.name.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="name">Name</label>
+                <input class="form-input font-normal" formControlName="name" id="name" type="text">
+            </div>
+            <div [ngClass]="(regiserUserForm.controls.username.invalid && regiserUserForm.controls.username.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="username">Username</label>
+                <input class="form-input font-normal" formControlName="username" id="username" type="text">
+            </div>
+            <div [ngClass]="(regiserUserForm.controls.password.invalid && regiserUserForm.controls.password.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="password">Password</label>
+                <input class="form-input font-normal" formControlName="password" id="password" type="text">
+            </div>
+            <div [ngClass]="(regiserUserForm.controls.mobile.invalid && regiserUserForm.controls.mobile.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="mobile">Mobile Number</label>
+                <input class="form-input font-normal" formControlName="mobile" id="mobile" type="text">
+            </div>
+            <div [ngClass]="(regiserUserForm.controls.email.invalid && regiserUserForm.controls.email.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="email">Email Address</label>
+                <input class="form-input font-normal" formControlName="email" id="email" type="text">
+            </div>
+            <div [ngClass]="(regiserUserForm.controls.role.invalid && regiserUserForm.controls.role.touched) ? 'has-error' : ''"
+                 class="mb-4">
+                <label class="font-normal" for="user-role">User Role</label>
+                <select class="form-select" formControlName="role" id="user-role">
+                    <option disabled>User Roles</option>
+                    <option *ngFor="let role of UserRoles | keyvalue" value="{{role.value}}">{{role.key}}</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                <button class="btn btn-primary w-1/5" type="submit">Register User</button>
+            </div>
+        </form>
+    </div>
+</div>

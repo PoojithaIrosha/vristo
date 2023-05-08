@@ -1,0 +1,39 @@
+<div class="panel">
+    <h5 class="text-lg font-semibold">Update User</h5>
+    
+    <div class="mt-5">
+        <form (ngSubmit)="updateUser()" [formGroup]="updateUserForm">
+            <div class="mb-2">
+                <label class="form-label font-normal" for="id">User ID</label>
+                <input class="form-input bg-[#eee] font-normal" formControlName="id" id="id" type="number">
+            </div>
+            <div class="mb-2">
+                <label class="form-label font-normal" for="name">Name</label>
+                <input class="form-input font-normal" formControlName="name" id="name" type="text">
+            </div>
+            <div class="mb-2">
+                <label class="form-label font-normal" for="mobile">Mobile Number</label>
+                <input class="form-input font-normal" formControlName="mobile" id="mobile" type="text">
+            </div>
+            <div class="mb-2">
+                <label class="form-label font-normal" for="email">Email Address</label>
+                <input class="form-input font-normal" formControlName="email" id="email" type="text">
+            </div>
+            <div class="mb-2">
+                <label class="font-normal" for="user-role">User Role</label>
+                <select class="form-select font-normal" formControlName="role" id="user-role">
+                    <option value="0">Select Role</option>
+                    <option *ngFor="let role of UserRoles | keyvalue" value="{{role.value}}">{{role.key}}</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label class="form-label font-normal" for="created-at">Created At</label>
+                <input #createdAtInput [value]="createdAtInput.value | date:'medium'" class="form-input font-normal bg-[#eee]" formControlName="createdAt"
+                       id="created-at" type="text">
+            </div>
+            <div class="mb-2">
+                <button class="btn btn-primary w-1/5">Update User</button>
+            </div>
+        </form>
+    </div>
+</div>

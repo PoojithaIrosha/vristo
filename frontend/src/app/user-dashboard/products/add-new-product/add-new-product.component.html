@@ -1,0 +1,34 @@
+<div class="panel">
+    <h5 class="text-lg font-semibold">Add Product</h5>
+    <div class="mt-5">
+        <form (ngSubmit)="registerProduct()" [formGroup]="registerForm">
+            <!-- [ngClass]="(registerSupplierForm.controls.name.invalid && registerSupplierForm.controls.name.touched) ? 'has-error' : ''" -->
+            <div [ngClass]="(registerForm.controls.name.invalid && registerForm.controls.name.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="name">Product Name</label>
+                <input class="form-input font-normal" formControlName="name" id="name" type="text">
+            </div>
+            <div [ngClass]="(registerForm.controls.brand.invalid && registerForm.controls.brand.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="brand">Product Brand</label>
+                <select class="form-select" formControlName="brand" id="brand">
+                    <option value="">Select Brand</option>
+                    <option *ngFor="let brand of brandList$ | async" value="{{brand.id}}">{{brand.name}}</option>
+                </select>
+            </div>
+            <div [ngClass]="(registerForm.controls.unit.invalid && registerForm.controls.unit.touched) ? 'has-error' : ''"
+                 class="mb-4">
+                <label class="form-label font-normal" for="unit">Product Unit</label>
+                <select class="form-select" formControlName="unit" id="unit">
+                    <option value="">Select unit</option>
+                    <option *ngFor="let unit of unitList$ | async" value="{{unit.id}}">{{unit.name}}</option>
+                </select>
+            </div>
+            
+            <div class="mb-2">
+                <button [disabled]="registerForm.invalid" class="btn btn-primary w-1/5" type="submit">Register Product
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

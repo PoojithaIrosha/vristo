@@ -1,0 +1,31 @@
+<div class="panel">
+    <h5 class="text-lg font-semibold">Update Brand</h5>
+    <div class="mt-5">
+        <form (ngSubmit)="updateBrand()" [formGroup]="updateForm">
+            <!-- [ngClass]="(registerSupplierForm.controls.name.invalid && registerSupplierForm.controls.name.touched) ? 'has-error' : ''" -->
+            <div [ngClass]="(updateForm.controls.id.invalid && updateForm.controls.id.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="id">Brand ID</label>
+                <input class="form-input font-normal disabled:bg-[#eee]" formControlName="id" id="id" type="number">
+            </div>
+            <div [ngClass]="(updateForm.controls.name.invalid && updateForm.controls.name.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="name">Brand Name</label>
+                <input class="form-input font-normal" formControlName="name" id="name" type="text">
+            </div>
+            <div [ngClass]="(updateForm.controls.category.invalid && updateForm.controls.category.touched) ? 'has-error' : ''"
+                 class="mb-4">
+                <label class="form-label font-normal" for="category">Category</label>
+                <select class="form-select" formControlName="category" id="category">
+                    <option value="">Select Category</option>
+                    <option *ngFor="let category of categoryList$ | async"
+                            value="{{category.id}}">{{category.name}}</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                <button [disabled]="updateForm.invalid" class="btn btn-primary w-1/5" type="submit">Update Brand
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

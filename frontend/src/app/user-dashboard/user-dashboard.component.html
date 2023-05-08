@@ -1,0 +1,23 @@
+<div class="main-content">
+    
+    <!-- start header section -->
+    <app-dashboard-header/>
+    <!-- end header section -->
+    
+    <div class="animate__animated px-4 py-4">
+        <div class="flex justify-between">
+            <!-- start sidebar -->
+            <app-dashboard-sidebar/>
+            
+            <div class="w-full pl-3">
+                <!-- start main content section -->
+                <router-outlet></router-outlet>
+                <!-- start main content section -->
+                
+                <!-- start footer section -->
+                <app-dashboard-footer/>
+                <!-- end footer section -->
+            </div>
+        </div>
+    </div>
+</div>

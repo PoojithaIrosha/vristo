@@ -1,0 +1,127 @@
+<div #productsModal class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto">
+    <div class="flex items-start justify-center min-h-screen px-4">
+        <div class="panel border-0 p-0 rounded-lg overflow-hidden my-8 w-full max-w-4xl animate__animated animate__fadeIn">
+            <div class="p-5">
+                <div class="dataTable-wrapper dataTable-loading no-footer fixed-columns">
+                    <div class="dataTable-top">
+                        <h5 class="text-lg font-semibold">Manage Products</h5>
+                        <div class="w-full flex justify-between gap-5">
+                            <form (ngSubmit)="searchProducts(currentPage, sizeNum)" [formGroup]="searchForm"
+                                  class="w-full">
+                                <input (keyup)="searchProducts(currentPage, sizeNum)" class="form-input"
+                                       formControlName="search"
+                                       placeholder="Search..."
+                                       type="text">
+                            </form>
+                        
+                        </div>
+                    </div>
+                    <div class="dataTable-container">
+                        <table class="table-hover whitespace-nowrap dataTable-table" id="myTable">
+                            <thead>
+                            <tr>
+                                <th class="whitespace-nowrap">#</th>
+                                <th style="text-align: start">Product Title</th>
+                                <th style="text-align: start">Brand</th>
+                                <th style="text-align: start">Category</th>
+                                <th style="text-align: start">Unit</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let product of productList">
+                                <td>{{product.id}}</td>
+                                <td>{{product.name}}</td>
+                                <td>{{product.brand.name}}</td>
+                                <td>{{product.brand.category.name}}</td>
+                                <td>1 {{product.unit.name}} Per Unit</td>
+                                <td class="flex justify-center">
+                                    <button (click)="selectProduct(product)" class="btn btn-sm btn-primary">SELECT
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="dataTable-bottom">
+                        <div class="dataTable-info">Showing {{offset + 1}}to {{last ? totalElements : offset + sizeNum}}
+                            of {{totalElements}} entries
+                        </div>
+                        <div class="dataTable-dropdown">
+                            <label>
+                                <select #size (change)="sizeChange(size.value)" class="dataTable-selector">
+                                    <option *ngFor="let s of sizesList" value="{{s}}">{{s}}</option>
+                                </select>
+                            </label>
+                        </div>
+                        <nav class="dataTable-pagination">
+                            <ul class="dataTable-pagination-list">
+                                <li class="pager">
+                                    <a (click)="paginate(0)">
+                                        <svg class="w-4.5 h-4.5 rtl:rotate-180" fill="none" height="24"
+                                             viewBox="0 0 24 24"
+                                             width="24"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-linecap="round"
+                                                  stroke-linejoin="round"
+                                                  stroke-width="1.5"></path>
+                                            <path d="M16.9998 19L10.9998 12L16.9998 5" opacity="0.5"
+                                                  stroke="currentColor"
+                                                  stroke-linecap="round" stroke-linejoin="round"
+                                                  stroke-width="1.5"></path>
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li class="pager">
+                                    <a (click)="paginate(currentPage-1)">
+                                        <svg class="w-4.5 h-4.5 rotate-180" fill="none" height="24" viewBox="0 0 24 24"
+                                             width="24"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-linecap="round"
+                                                  stroke-linejoin="round"
+                                                  stroke-width="1.5"></path>
+                                        </svg>
+                                    </a>
+                                </li>
+                                
+                                <li *ngFor="let page of totalPages" [class.active]="currentPage+1 == page" class="px-1">
+                                    <a
+                                            (click)="paginate(page-1)">{{page}}</a></li>
+                                
+                                <li class="pager">
+                                    <a (click)="currentPage+1 != totalPages.length ? paginate(currentPage+1) : null">
+                                        <svg class="w-4.5 h-4.5 rtl:rotate-180" fill="none" height="24"
+                                             viewBox="0 0 24 24"
+                                             width="24"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-linecap="round"
+                                                  stroke-linejoin="round"
+                                                  stroke-width="1.5"></path>
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li class="pager">
+                                    <a (click)="paginate(totalPages.length-1)">
+                                        <svg class="w-4.5 h-4.5 rtl:rotate-180" fill="none" height="24"
+                                             viewBox="0 0 24 24"
+                                             width="24"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-linecap="round"
+                                                  stroke-linejoin="round"
+                                                  stroke-width="1.5"></path>
+                                            <path d="M6.99976 19L12.9998 12L6.99976 5" opacity="0.5"
+                                                  stroke="currentColor"
+                                                  stroke-linecap="round" stroke-linejoin="round"
+                                                  stroke-width="1.5"></path>
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</div>

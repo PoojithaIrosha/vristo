@@ -1,0 +1,26 @@
+<div class="panel">
+    <h5 class="text-lg font-semibold">Add Brand</h5>
+    <div class="mt-5">
+        <form (ngSubmit)="registerBrand()" [formGroup]="registerForm">
+            <!-- [ngClass]="(registerSupplierForm.controls.name.invalid && registerSupplierForm.controls.name.touched) ? 'has-error' : ''" -->
+            <div [ngClass]="(registerForm.controls.name.invalid && registerForm.controls.name.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="name">Brand Name</label>
+                <input class="form-input font-normal" formControlName="name" id="name" type="text">
+            </div>
+            <div [ngClass]="(registerForm.controls.category.invalid && registerForm.controls.category.touched) ? 'has-error' : ''"
+                 class="mb-4">
+                <label class="form-label font-normal" for="category">Category</label>
+                <select class="form-select" formControlName="category" id="category">
+                    <option value="">Select Category</option>
+                    <option *ngFor="let category of categoryList$ | async"
+                            value="{{category.id}}">{{category.name}}</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                <button [disabled]="registerForm.invalid" class="btn btn-primary w-1/5" type="submit">Register Brand
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

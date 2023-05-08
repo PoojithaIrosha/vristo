@@ -1,0 +1,213 @@
+<div class="hidden md:flex">
+    <nav class="sidebar bottom-0 z-50 h-full min-h-screen w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300"
+         style="top: 100px">
+        <div class="h-full bg-white dark:bg-[#0e1726]">
+            <div class="flex items-center justify-center px-4 py-3">
+                <a class="main-logo flex shrink-0 items-center" routerLink="./dashboard">
+                    <img alt="image" class="ml-[5px] w-11 flex-none" src="assets/images/logo.svg"/>
+                </a>
+            </div>
+            <ul class="perfect-scrollbar relative h-[calc(100vh-80px)] space-y-0.5 overflow-y-auto overflow-x-hidden p-4 py-0 font-semibold">
+                <li class="menu nav-item">
+                    <button (click)="changeActiveElement('dashboard')" [class.active]="activeElement == 'dashboard'"
+                            class="nav-link group"
+                            routerLink="./dashboard" type="button">
+                        <div class="flex items-center">
+                            <svg class="group-hover:!text-primary" fill="none" height="20"
+                                 viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274C22 8.77128 22 9.91549 22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039Z"
+                                      fill="currentColor"
+                                      opacity="0.5"/>
+                                <path
+                                        d="M9 17.25C8.58579 17.25 8.25 17.5858 8.25 18C8.25 18.4142 8.58579 18.75 9 18.75H15C15.4142 18.75 15.75 18.4142 15.75 18C15.75 17.5858 15.4142 17.25 15 17.25H9Z"
+                                        fill="currentColor"/>
+                            </svg>
+                            
+                            <span class="text-black pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Dashboard</span>
+                        </div>
+                    </button>
+                </li>
+                
+                <h2
+                        class="-mx-4 mb-1 flex items-center bg-white-light/30 py-3 px-7 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
+                    <svg class="hidden h-5 w-4 flex-none" fill="none" stroke="currentColor"
+                         stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                         viewBox="0 0 24 24">
+                        <line x1="5" x2="19" y1="12" y2="12"></line>
+                    </svg>
+                    <span>Apps</span>
+                </h2>
+                
+                <li class="nav-item">
+                    <ul>
+                        <li #usersMenu *ngIf="isAdmin" class="nav-item">
+                            <a (click)="changeActiveElement(usersMenu)" [class.active]="activeElement == usersMenu"
+                               class="group"
+                               routerLink="./users">
+                                <div class="flex items-center">
+                                    <svg class="group-hover:!text-primary" fill="none" height="20"
+                                         viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="15" cy="6" fill="currentColor" opacity="0.5" r="3"/>
+                                        <ellipse cx="16" cy="17" fill="currentColor" opacity="0.5" rx="5"
+                                                 ry="3"/>
+                                        <circle cx="9.00098" cy="6" fill="currentColor" r="4"/>
+                                        <ellipse cx="9.00098" cy="17.001" fill="currentColor" rx="7"
+                                                 ry="4"/>
+                                    </svg>
+                                    <span
+                                            class="text-black pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Users</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li *ngIf="isAdmin" class="nav-item">
+                            <a (click)="expandSideBar(supplierMenu); changeActiveElement(supplierMenu)"
+                               [class.active]="activeElement == supplierMenu"
+                               class="group" style="cursor: pointer;">
+                                <div class="flex items-center">
+                                    <svg class="group-hover:!text-primary" fill="none" height="20"
+                                         viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="15" cy="6" fill="currentColor" opacity="0.5" r="3"/>
+                                        <ellipse cx="16" cy="17" fill="currentColor" opacity="0.5" rx="5"
+                                                 ry="3"/>
+                                        <circle cx="9.00098" cy="6" fill="currentColor" r="4"/>
+                                        <ellipse cx="9.00098" cy="17.001" fill="currentColor" rx="7"
+                                                 ry="4"/>
+                                    </svg>
+                                    <span class="text-black pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Suppliers</span>
+                                </div>
+                            </a>
+                            <ul #supplierMenu class="sub-menu text-gray-500" hidden style="height: auto">
+                                <li>
+                                    <a routerLink="/suppliers">Manage Suppliers</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/suppliers/companies">Manage Companies</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li *ngIf="isAdmin" class="nav-item">
+                            <a (click)="expandSideBar(productsMenu); changeActiveElement(productsMenu)"
+                               [class.active]="activeElement == productsMenu">
+                                <div class="flex items-center">
+                                    <svg class="group-hover:!text-primary" fill="none" height="20"
+                                         viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                                d="M8.42229 20.6181C10.1779 21.5395 11.0557 22.0001 12 22.0001V12.0001L2.63802 7.07275C2.62423 7.09491 2.6107 7.11727 2.5974 7.13986C2 8.15436 2 9.41678 2 11.9416V12.0586C2 14.5834 2 15.8459 2.5974 16.8604C3.19479 17.8749 4.27063 18.4395 6.42229 19.5686L8.42229 20.6181Z"
+                                                fill="currentColor"/>
+                                        <path d="M17.5774 4.43152L15.5774 3.38197C13.8218 2.46066 12.944 2 11.9997 2C11.0554 2 10.1776 2.46066 8.42197 3.38197L6.42197 4.43152C4.31821 5.53552 3.24291 6.09982 2.6377 7.07264L11.9997 12L21.3617 7.07264C20.7564 6.09982 19.6811 5.53552 17.5774 4.43152Z"
+                                              fill="currentColor"
+                                              opacity="0.7"/>
+                                        <path d="M21.4026 7.13986C21.3893 7.11727 21.3758 7.09491 21.362 7.07275L12 12.0001V22.0001C12.9443 22.0001 13.8221 21.5395 15.5777 20.6181L17.5777 19.5686C19.7294 18.4395 20.8052 17.8749 21.4026 16.8604C22 15.8459 22 14.5834 22 12.0586V11.9416C22 9.41678 22 8.15436 21.4026 7.13986Z"
+                                              fill="currentColor"
+                                              opacity="0.5"/>
+                                    </svg>
+                                    <span
+                                            class="text-black pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Products</span>
+                                </div>
+                            </a>
+                            <ul #productsMenu class="sub-menu text-gray-500" hidden style="height: auto">
+                                <li>
+                                    <a routerLink="/products">Manage Products</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/brands">Manage Brands</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/categories">Manage Categories</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a (click)="expandSideBar(grnMenu); changeActiveElement(grnMenu)"
+                               [class.active]="activeElement == grnMenu">
+                                <div class="flex items-center">
+                                    <svg class="group-hover:!text-primary" fill="none" height="20"
+                                         viewBox="0 0 24 24" width="20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 10C3 6.22876 3 4.34315 4.17157 3.17157C5.34315 2 7.22876 2 11 2H13C16.7712 2 18.6569 2 19.8284 3.17157C21 4.34315 21 6.22876 21 10V14C21 17.7712 21 19.6569 19.8284 20.8284C18.6569 22 16.7712 22 13 22H11C7.22876 22 5.34315 22 4.17157 20.8284C3 19.6569 3 17.7712 3 14V10Z"
+                                              fill="currentColor"
+                                              opacity="0.5"/>
+                                        <path clip-rule="evenodd"
+                                              d="M12 5.25C12.4142 5.25 12.75 5.58579 12.75 6V7.25H14C14.4142 7.25 14.75 7.58579 14.75 8C14.75 8.41421 14.4142 8.75 14 8.75L12.75 8.75L12.75 10C12.75 10.4142 12.4142 10.75 12 10.75C11.5858 10.75 11.25 10.4142 11.25 10L11.25 8.75H9.99997C9.58575 8.75 9.24997 8.41421 9.24997 8C9.24997 7.58579 9.58575 7.25 9.99997 7.25H11.25L11.25 6C11.25 5.58579 11.5858 5.25 12 5.25ZM7.25 14C7.25 13.5858 7.58579 13.25 8 13.25H16C16.4142 13.25 16.75 13.5858 16.75 14C16.75 14.4142 16.4142 14.75 16 14.75H8C7.58579 14.75 7.25 14.4142 7.25 14ZM8.25 18C8.25 17.5858 8.58579 17.25 9 17.25H15C15.4142 17.25 15.75 17.5858 15.75 18C15.75 18.4142 15.4142 18.75 15 18.75H9C8.58579 18.75 8.25 18.4142 8.25 18Z"
+                                              fill="currentColor"
+                                              fill-rule="evenodd"/>
+                                    </svg>
+                                    <span
+                                            class="text-black pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">GRN</span>
+                                </div>
+                            </a>
+                            <ul #grnMenu class="sub-menu text-gray-500" hidden style="height: auto">
+                                <li>
+                                    <a routerLink="/grn">Add GRN</a>
+                                </li>
+                                <li>
+                                    <a routerLink="grn/history">GRN History</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="menu nav-item">
+                            <button routerLink="/stock">
+                                <div class="flex items-center">
+                                    <svg class="group-hover:!text-primary" fill="none" height="20"
+                                         viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                                d="M4.97883 9.68508C2.99294 8.89073 2 8.49355 2 8C2 7.50645 2.99294 7.10927 4.97883 6.31492L7.7873 5.19153C9.77318 4.39718 10.7661 4 12 4C13.2339 4 14.2268 4.39718 16.2127 5.19153L19.0212 6.31492C21.0071 7.10927 22 7.50645 22 8C22 8.49355 21.0071 8.89073 19.0212 9.68508L16.2127 10.8085C14.2268 11.6028 13.2339 12 12 12C10.7661 12 9.77318 11.6028 7.7873 10.8085L4.97883 9.68508Z"
+                                                fill="currentColor"/>
+                                        <path clip-rule="evenodd"
+                                              d="M2 8C2 8.49355 2.99294 8.89073 4.97883 9.68508L7.7873 10.8085C9.77318 11.6028 10.7661 12 12 12C13.2339 12 14.2268 11.6028 16.2127 10.8085L19.0212 9.68508C21.0071 8.89073 22 8.49355 22 8C22 7.50645 21.0071 7.10927 19.0212 6.31492L16.2127 5.19153C14.2268 4.39718 13.2339 4 12 4C10.7661 4 9.77318 4.39718 7.7873 5.19153L4.97883 6.31492C2.99294 7.10927 2 7.50645 2 8Z"
+                                              fill="currentColor"
+                                              fill-rule="evenodd"/>
+                                        <path d="M5.76613 10L4.97883 10.3149C2.99294 11.1093 2 11.5065 2 12C2 12.4935 2.99294 12.8907 4.97883 13.6851L7.7873 14.8085C9.77318 15.6028 10.7661 16 12 16C13.2339 16 14.2268 15.6028 16.2127 14.8085L19.0212 13.6851C21.0071 12.8907 22 12.4935 22 12C22 11.5065 21.0071 11.1093 19.0212 10.3149L18.2339 10L16.2127 10.8085C14.2268 11.6028 13.2339 12 12 12C10.7661 12 9.77318 11.6028 7.7873 10.8085L5.76613 10Z"
+                                              fill="currentColor"
+                                              opacity="0.7"/>
+                                        <path d="M5.76613 14L4.97883 14.3149C2.99294 15.1093 2 15.5065 2 16C2 16.4935 2.99294 16.8907 4.97883 17.6851L7.7873 18.8085C9.77318 19.6028 10.7661 20 12 20C13.2339 20 14.2268 19.6028 16.2127 18.8085L19.0212 17.6851C21.0071 16.8907 22 16.4935 22 16C22 15.5065 21.0071 15.1093 19.0212 14.3149L18.2339 14L16.2127 14.8085C14.2268 15.6028 13.2339 16 12 16C10.7661 16 9.77318 15.6028 7.7873 14.8085L5.76613 14Z"
+                                              fill="currentColor"
+                                              opacity="0.4"/>
+                                    </svg>
+                                    
+                                    <span
+                                            class="text-black pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Stock</span>
+                                </div>
+                            </button>
+                        </li>
+                        
+                        <li class="menu nav-item">
+                            <a (click)="expandSideBar(invoiceMenu); changeActiveElement(invoiceMenu)"
+                               [class.active]="activeElement == invoiceMenu" class="nav-link group" type="button">
+                                <div class="flex items-center">
+                                    <svg class="group-hover:!text-primary" fill="none" height="20"
+                                         viewBox="0 0 24 24" width="20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path clip-rule="evenodd"
+                                              d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                                              fill="currentColor"
+                                              fill-rule="evenodd"
+                                              opacity="0.5"/>
+                                        <path clip-rule="evenodd"
+                                              d="M12 5.25C12.4142 5.25 12.75 5.58579 12.75 6V6.31673C14.3804 6.60867 15.75 7.83361 15.75 9.5C15.75 9.91421 15.4142 10.25 15 10.25C14.5858 10.25 14.25 9.91421 14.25 9.5C14.25 8.82154 13.6859 8.10339 12.75 7.84748V11.3167C14.3804 11.6087 15.75 12.8336 15.75 14.5C15.75 16.1664 14.3804 17.3913 12.75 17.6833V18C12.75 18.4142 12.4142 18.75 12 18.75C11.5858 18.75 11.25 18.4142 11.25 18V17.6833C9.61957 17.3913 8.25 16.1664 8.25 14.5C8.25 14.0858 8.58579 13.75 9 13.75C9.41421 13.75 9.75 14.0858 9.75 14.5C9.75 15.1785 10.3141 15.8966 11.25 16.1525V12.6833C9.61957 12.3913 8.25 11.1664 8.25 9.5C8.25 7.83361 9.61957 6.60867 11.25 6.31673V6C11.25 5.58579 11.5858 5.25 12 5.25ZM11.25 7.84748C10.3141 8.10339 9.75 8.82154 9.75 9.5C9.75 10.1785 10.3141 10.8966 11.25 11.1525V7.84748ZM14.25 14.5C14.25 13.8215 13.6859 13.1034 12.75 12.8475V16.1525C13.6859 15.8966 14.25 15.1785 14.25 14.5Z"
+                                              fill="currentColor"
+                                              fill-rule="evenodd"/>
+                                    </svg>
+                                    <span
+                                            class="text-black pl-3">Invoice</span>
+                                </div>
+                            </a>
+                            <ul #invoiceMenu class="sub-menu text-gray-500" hidden style="height: auto">
+                                <li>
+                                    <a routerLink="invoice">Add Invoice</a>
+                                </li>
+                                <li>
+                                    <a routerLink="invoice/history">Invoice History</a>
+                                </li>
+                            </ul>
+                        </li>
+                    
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

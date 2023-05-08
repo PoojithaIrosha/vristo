@@ -1,0 +1,129 @@
+<div class="panel">
+    <div class="dataTable-wrapper dataTable-loading no-footer fixed-columns">
+        <div class="dataTable-top">
+            <h5 class="text-lg font-semibold">GRN History</h5>
+            <form (ngSubmit)="searchInvoices(currentPage, sizeNum)" [formGroup]="searchForm" class="w-full">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="form-label">Starting Date</label>
+                        <input (change)="searchInvoices(currentPage, sizeNum)" class="form-input"
+                               formControlName="startDate"
+                               type="date">
+                    </div>
+                    <div>
+                        <label class="form-label">Ending Date</label>
+                        <input (change)="searchInvoices(currentPage, sizeNum)" class="form-input"
+                               formControlName="endDate"
+                               type="date">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="dataTable-container">
+            <table class="table-hover whitespace-nowrap dataTable-table" id="myTable">
+                <thead>
+                <tr>
+                    <th class="whitespace-nowrap">#</th>
+                    <th style="text-align: start">Date Time</th>
+                    <th style="text-align: start">User Billed</th>
+                    <th style="text-align: start">No of Items</th>
+                    <th style="text-align: start">Total Amount</th>
+                    <th style="text-align: start">Paid Amount</th>
+                    <th style="text-align: start">Balance</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let inv of invoiceList">
+                    <td>#{{inv.id}}</td>
+                    <td>{{inv.dateTime | date:'medium'}}</td>
+                    <td>{{inv.user.name}}</td>
+                    <td>{{inv.invoiceItems.length}}</td>
+                    <td>{{inv.invoicePayment.payment - inv.invoicePayment.balance}}</td>
+                    <td>{{inv.invoicePayment.payment}}</td>
+                    <td>{{inv.invoicePayment.balance}}</td>
+                    <td class="flex justify-center">
+                        <button (click)="generateReport(inv.id)" class="btn btn-sm btn-secondary">
+                            <div *ngIf="generatingGrnId == inv.id" class="gap-4">
+                                <span class="animate-ping w-3 h-3 ml-4 inline-block rounded-full bg-white"></span>
+                                Loading...
+                            </div>
+                            <ng-container *ngIf="generatingGrnId != inv.id">
+                                View Report
+                            </ng-container>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="dataTable-bottom">
+            <div class="dataTable-info">Showing {{offset + 1}} to {{last ? totalElements : offset + sizeNum}}
+                of {{totalElements}} entries
+            </div>
+            <div class="dataTable-dropdown">
+                <label>
+                    <select #size (change)="sizeChange(size.value)" class="dataTable-selector">
+                        <option *ngFor="let s of sizesList" value="{{s}}">{{s}}</option>
+                    </select>
+                </label>
+            </div>
+            <nav class="dataTable-pagination">
+                <ul class="dataTable-pagination-list">
+                    <li class="pager">
+                        <a (click)="paginate(0)">
+                            <svg class="w-4.5 h-4.5 rtl:rotate-180" fill="none" height="24" viewBox="0 0 24 24"
+                                 width="24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="1.5"></path>
+                                <path d="M16.9998 19L10.9998 12L16.9998 5" opacity="0.5" stroke="currentColor"
+                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="pager">
+                        <a (click)="paginate(currentPage-1)">
+                            <svg class="w-4.5 h-4.5 rotate-180" fill="none" height="24" viewBox="0 0 24 24"
+                                 width="24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="1.5"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    
+                    <li *ngFor="let page of totalPages" [class.active]="currentPage+1 == page" class="px-1"><a
+                            (click)="paginate(page-1)">{{page}}</a></li>
+                    
+                    <li class="pager">
+                        <a (click)="currentPage+1 != totalPages.length ? paginate(currentPage+1) : null">
+                            <svg class="w-4.5 h-4.5 rtl:rotate-180" fill="none" height="24" viewBox="0 0 24 24"
+                                 width="24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="1.5"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="pager">
+                        <a (click)="paginate(totalPages.length-1)">
+                            <svg class="w-4.5 h-4.5 rtl:rotate-180" fill="none" height="24" viewBox="0 0 24 24"
+                                 width="24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="1.5"></path>
+                                <path d="M6.99976 19L12.9998 12L6.99976 5" opacity="0.5" stroke="currentColor"
+                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

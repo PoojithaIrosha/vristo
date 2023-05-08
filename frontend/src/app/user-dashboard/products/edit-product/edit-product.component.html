@@ -1,0 +1,38 @@
+<div class="panel">
+    <h5 class="text-lg font-semibold">Update Product</h5>
+    <div class="mt-5">
+        <form (ngSubmit)="updateProduct()" [formGroup]="updateForm">
+            <div [ngClass]="(updateForm.controls.id.invalid && updateForm.controls.id.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="id">Product ID</label>
+                <input class="form-input font-normal disabled:bg-[#eee]" formControlName="id" id="id" type="number">
+            </div>
+            <div [ngClass]="(updateForm.controls.name.invalid && updateForm.controls.name.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="name">Product Name</label>
+                <input class="form-input font-normal" formControlName="name" id="name" type="text">
+            </div>
+            <div [ngClass]="(updateForm.controls.brand.invalid && updateForm.controls.brand.touched) ? 'has-error' : ''"
+                 class="mb-2">
+                <label class="form-label font-normal" for="brand">Product Brand</label>
+                <select class="form-select" formControlName="brand" id="brand">
+                    <option value="">Select Brand</option>
+                    <option *ngFor="let brand of brandList$ | async" value="{{brand.id}}">{{brand.name}}</option>
+                </select>
+            </div>
+            <div [ngClass]="(updateForm.controls.unit.invalid && updateForm.controls.unit.touched) ? 'has-error' : ''"
+                 class="mb-4">
+                <label class="form-label font-normal" for="unit">Product Unit</label>
+                <select class="form-select" formControlName="unit" id="unit">
+                    <option value="">Select unit</option>
+                    <option *ngFor="let unit of unitList$ | async" value="{{unit.id}}">{{unit.name}}</option>
+                </select>
+            </div>
+            
+            <div class="mb-2">
+                <button [disabled]="updateForm.invalid" class="btn btn-primary w-1/5" type="submit">Update Product
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

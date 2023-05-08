@@ -1,0 +1,136 @@
+<div class="grid grid-cols-1 gap-3 mb-3">
+    
+    <div class="panel">
+        <div class="flex justify-between">
+            <h5 class="text-lg mb-3 font-bold">Stock</h5>
+            <button (click)="showModal('stock')" class="btn btn-sm btn-dark">SELECT STOCK</button>
+        </div>
+        <div>
+            <form [formGroup]="stockForm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                    <div class="mb-3">
+                        <label class="form-label">Stock ID</label>
+                        <input class="form-input bg-[#eee]" formControlName="stockId" type="text"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Product</label>
+                        <input class="form-input bg-[#eee]" formControlName="productName" type="1text"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Brand</label>
+                        <input class="form-input bg-[#eee]" formControlName="brand" type="text"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Price</label>
+                        <input class="form-input bg-[#eee]" formControlName="price" type="text"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Expire Date</label>
+                        <input class="form-input bg-[#eee]" formControlName="expireDate" type="text"/>
+                    </div>
+                    <div>
+                        <label class="form-label">Quantity</label>
+                        <input class="form-input" formControlName="quantity" type="number"/>
+                    </div>
+                </div>
+                <div class="grid">
+                    <button (click)="addInvoiceItem()" class="btn btn-dark">ADD INVOICE ITEM</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="panel">
+        <div class="dataTable-wrapper dataTable-loading no-footer fixed-columns">
+            <div class="dataTable-container">
+                <table class="table-hover whitespace-nowrap dataTable-table" id="myTable">
+                    <thead>
+                    <tr>
+                        <th class="whitespace-nowrap">#</th>
+                        <th>Product Name</th>
+                        <th>Brand</th>
+                        <th>Manufacture Date</th>
+                        <th>Expire Date</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let stock of stockList">
+                        <td>{{stock.id}}</td>
+                        <td>{{stock.product.name}}</td>
+                        <td>{{stock.product.brand.name}}</td>
+                        <td>{{stock.manufactureDate}}</td>
+                        <td>{{stock.expireDate}}</td>
+                        <td>{{stock.quantity}}</td>
+                        <td>{{stock.sellingPrice}}</td>
+                        <td>{{stock.quantity * stock.sellingPrice}}</td>
+                        <td>
+                            <button (click)="removeItem(stock)" class="btn btn-sm btn-danger">REMOVE</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="stockList.length <= 0">
+                        <td class="text-center text-danger font-bold" colspan="9">
+                            <span>No Invoice Items Added.</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel">
+        <form [formGroup]="priceForm" class="grid grid-cols-2 gap-3 mb-3">
+            
+            <div>
+                <div [ngClass]="(priceForm.controls.grandTotal.invalid && priceForm.controls.grandTotal.touched) ? 'has-error' : ''"
+                     class="mb-2">
+                    <label>Grand Total</label>
+                    <input [value]="priceForm.get('grandTotal')?.value | currency:'LKR'" class="form-input bg-[#eee]"
+                           formControlName="grandTotal"
+                           type="text"/>
+                </div>
+                <div [ngClass]="(priceForm.controls.payment.invalid && priceForm.controls.payment.touched) ? 'has-error' : ''"
+                     class="mb-2">
+                    <label>Payment</label>
+                    <input #payment (keyup)="calculateBalance(parseInt(payment.value))" class="form-input"
+                           formControlName="payment"
+                           placeholder="Rs.1.00" type="text"/>
+                </div>
+            </div>
+            <div>
+                <div [ngClass]="(priceForm.controls.paymentType.invalid && priceForm.controls.paymentType.touched) ? 'has-error' : ''"
+                     class="mb-2">
+                    <label>Payment Type</label>
+                    <select class="form-select" formControlName="paymentType">
+                        <option value="">Select Payment Type</option>
+                        <option *ngFor="let paymentType of PaymentTypes | keyvalue"
+                                value="{{paymentType.value}}">{{paymentType.key}}</option>
+                    </select>
+                </div>
+                <div [ngClass]="(priceForm.controls.balance.invalid && priceForm.controls.balance.touched) ? 'has-error' : ''">
+                    <label>Balance</label>
+                    <input [value]="priceForm.get('balance')?.value | currency:'LKR'" class="form-input bg-[#eee]"
+                           formControlName="balance"
+                           type="text"/>
+                </div>
+            </div>
+        </form>
+        <div class="grid">
+            <button (click)="addInvoice()" *ngIf="!loading" [disabled]="priceForm.invalid" class="btn btn-warning">Add
+                Invoice
+            </button>
+            <button *ngIf="loading" class="btn btn-primary gap-4 hidden" type="button">
+                <span class="animate-ping w-3 h-3 ml-4 inline-block rounded-full bg-white"></span>
+                Loading...
+            </button>
+        </div>
+    </div>
+</div>
+
+<app-stock-modal (changedVisible)="hideModal('product')" (selectedStock)="selectStock($event)"
+                 [isVisible]="IsVisibleStockModal"></app-stock-modal>
