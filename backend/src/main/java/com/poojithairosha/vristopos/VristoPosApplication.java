@@ -1,16 +1,9 @@
 package com.poojithairosha.vristopos;
 
-import com.poojithairosha.vristopos.model.user.User;
-import com.poojithairosha.vristopos.model.user.UserRole;
-import com.poojithairosha.vristopos.service.impl.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class VristoPosApplication {

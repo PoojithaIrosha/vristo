@@ -35,6 +35,6 @@ export class SuppliersService {
     }
 
     updateSupplier(supplier: { id: number; name: string; email: string; mobile: string; company: CompanyDTO; }) {
-        return this.http.put(`http://localhost:8080/api/suppliers/update`, supplier);
+        return this.http.put(`http://localhost:8080/api/suppliers`, supplier);
     }
 }
