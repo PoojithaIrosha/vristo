@@ -1,4 +1,4 @@
-package com.poojithairosha.vristopos.service;
+package com.poojithairosha.vristopos.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

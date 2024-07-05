@@ -3,7 +3,7 @@ package com.poojithairosha.vristopos.controller;
 import com.poojithairosha.vristopos.dto.ClientResponse;
 import com.poojithairosha.vristopos.dto.ProductDTO;
 import com.poojithairosha.vristopos.model.product.Product;
-import com.poojithairosha.vristopos.service.ProductService;
+import com.poojithairosha.vristopos.service.impl.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

@@ -2,7 +2,7 @@ package com.poojithairosha.vristopos.controller;
 
 import com.poojithairosha.vristopos.dto.StockUpdateDTO;
 import com.poojithairosha.vristopos.model.product.Stock;
-import com.poojithairosha.vristopos.service.StockService;
+import com.poojithairosha.vristopos.service.impl.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package com.poojithairosha.vristopos.service;
+package com.poojithairosha.vristopos.service.impl;
 
 import com.poojithairosha.vristopos.model.user.SecurityUser;
 import com.poojithairosha.vristopos.repository.UserRepository;

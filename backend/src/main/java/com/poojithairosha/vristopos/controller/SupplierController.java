@@ -3,7 +3,7 @@ package com.poojithairosha.vristopos.controller;
 import com.poojithairosha.vristopos.dto.ClientResponse;
 import com.poojithairosha.vristopos.dto.SupplierDTO;
 import com.poojithairosha.vristopos.model.supplier.Supplier;
-import com.poojithairosha.vristopos.service.SupplierService;
+import com.poojithairosha.vristopos.service.impl.SupplierService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

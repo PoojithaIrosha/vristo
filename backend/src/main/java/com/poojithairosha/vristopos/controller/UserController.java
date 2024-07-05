@@ -3,7 +3,7 @@ package com.poojithairosha.vristopos.controller;
 import com.poojithairosha.vristopos.dto.ClientResponse;
 import com.poojithairosha.vristopos.dto.UserDTO;
 import com.poojithairosha.vristopos.model.user.User;
-import com.poojithairosha.vristopos.service.UserService;
+import com.poojithairosha.vristopos.service.impl.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

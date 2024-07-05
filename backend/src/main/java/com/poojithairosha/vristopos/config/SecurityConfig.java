@@ -2,7 +2,7 @@ package com.poojithairosha.vristopos.config;
 
 import com.github.javafaker.Faker;
 import com.poojithairosha.vristopos.filter.JwtTokenFilter;
-import com.poojithairosha.vristopos.service.UserDetailsServiceImpl;
+import com.poojithairosha.vristopos.service.impl.UserDetailsServiceImpl;
 import com.poojithairosha.vristopos.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -49,6 +49,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("api/auth/api/auth/login").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/test/**").permitAll()
                         .requestMatchers("/api/users/**").hasRole("ADMIN")

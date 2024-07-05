@@ -1,7 +1,7 @@
 package com.poojithairosha.vristopos.controller;
 
 import com.poojithairosha.vristopos.model.product.Unit;
-import com.poojithairosha.vristopos.service.UnitService;
+import com.poojithairosha.vristopos.service.impl.UnitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

@@ -2,7 +2,7 @@ package com.poojithairosha.vristopos.controller;
 
 import com.poojithairosha.vristopos.dto.ClientResponse;
 import com.poojithairosha.vristopos.model.product.Brand;
-import com.poojithairosha.vristopos.service.BrandService;
+import com.poojithairosha.vristopos.service.impl.BrandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

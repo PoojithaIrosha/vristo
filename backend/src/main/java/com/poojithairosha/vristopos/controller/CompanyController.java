@@ -2,7 +2,7 @@ package com.poojithairosha.vristopos.controller;
 
 import com.poojithairosha.vristopos.dto.ClientResponse;
 import com.poojithairosha.vristopos.dto.CompanyDTO;
-import com.poojithairosha.vristopos.service.CompanyService;
+import com.poojithairosha.vristopos.service.impl.CompanyService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

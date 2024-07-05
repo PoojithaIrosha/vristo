@@ -1,4 +1,4 @@
-package com.poojithairosha.vristopos.service;
+package com.poojithairosha.vristopos.service.impl;
 
 import com.poojithairosha.vristopos.model.product.Unit;
 import com.poojithairosha.vristopos.repository.UnitRepository;

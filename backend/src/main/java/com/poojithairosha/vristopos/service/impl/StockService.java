@@ -1,4 +1,4 @@
-package com.poojithairosha.vristopos.service;
+package com.poojithairosha.vristopos.service.impl;
 
 import com.poojithairosha.vristopos.dto.StockReportDTO;
 import com.poojithairosha.vristopos.dto.StockSearchDTO;
