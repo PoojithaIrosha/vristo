@@ -4,7 +4,7 @@ import com.poojithairosha.vristopos.dto.InvoiceDTO;
 import com.poojithairosha.vristopos.dto.SearchGrnInvoiceDTO;
 import com.poojithairosha.vristopos.model.invoice.InvoiceResponseDTO;
 import com.poojithairosha.vristopos.model.product.Product;
-import com.poojithairosha.vristopos.service.InvoiceService;
+import com.poojithairosha.vristopos.service.impl.InvoiceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;

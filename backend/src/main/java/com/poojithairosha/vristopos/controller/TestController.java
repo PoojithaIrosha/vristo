@@ -14,12 +14,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TestController {
 
-
-    private final InvoiceRepository invoiceRepository;
-
     @GetMapping
-    public List<Product> getAll() {
-        return invoiceRepository.findTopSellingProducts();
+    public String test() {
+        return "This is a test endpoint";
     }
 
 }

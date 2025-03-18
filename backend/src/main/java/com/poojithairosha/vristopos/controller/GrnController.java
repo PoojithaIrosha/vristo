@@ -3,7 +3,7 @@ package com.poojithairosha.vristopos.controller;
 import com.poojithairosha.vristopos.dto.GrnDTO;
 import com.poojithairosha.vristopos.dto.GrnResponseDTO;
 import com.poojithairosha.vristopos.dto.SearchGrnInvoiceDTO;
-import com.poojithairosha.vristopos.service.GrnService;
+import com.poojithairosha.vristopos.service.impl.GrnService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;

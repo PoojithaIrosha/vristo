@@ -1,6 +1,5 @@
-package com.poojithairosha.vristopos.controller;
+package com.poojithairosha.vristopos.dto;
 
-import com.poojithairosha.vristopos.dto.StockSearchDTO;
 import lombok.Builder;
 
 @Builder
