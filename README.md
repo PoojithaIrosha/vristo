@@ -1,8 +1,8 @@
+# Vristo POS System
 
-# Vristo POS System ✅
-
-Vristo is online web based pos system built using spring boot and angular. 🧑‍💻
-
+A full-stack web-based Point-of-Sale system built using Spring Boot and Angular.
+The system demonstrates secure API development, database-driven workflows,
+and containerized deployment for modern retail applications.
 
 ## Features
 
